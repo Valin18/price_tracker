@@ -59,7 +59,7 @@ def check_price():
     span = soup.find(id='offering-price')
     content = span.attrs.get('content')
     price = float(content)
-    print('Güncel Fiyat: '+ price.as_string())
+    print(price)
     if price < 4000:
         send_mail(title)
 
