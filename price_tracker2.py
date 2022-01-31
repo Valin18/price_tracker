@@ -26,7 +26,7 @@ def send_mail(title):
 
         mesaj = MIMEMultipart()
         mesaj["From"] = "pricetracking11@gmail.com"          # Gönderen
-        mesaj['To'] = "gamerefe7788@gmail.com"           # Gönderilen
+        mesaj['To'] = "serdarpeugeot@gmail.com"           # Gönderilen
         mesaj["Subject"] = "Note 10 S Fiyat Güncellemesi"    # Konusu
 
         body = 'Note 10 S Güncel Fiyatı '+ content +'\n\n Şu Linkten Ulaşabilirsiniz => ' + url
@@ -58,7 +58,7 @@ def check_price():
     content = span.attrs.get('content')
     price = float(content)
     print(price)
-    if price < 5000:
+    if price < 4000:
         send_mail(title)
 
 
