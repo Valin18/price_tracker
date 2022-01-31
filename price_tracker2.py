@@ -1,23 +1,48 @@
 import time
 import smtplib
 from traceback import print_exception
+from turtle import title
 import requests
 from bs4 import BeautifulSoup
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import sys
+import os
+
+# Terminal Penceresini Temizleyen fonksiyon
+
+def clear():
+    """
+        Bu fonksiyon terminal penceresini ilk haline getirir.
+    """
+    # İşletim Sistemi Windows ise
+    if os.name == 'nt':
+        _ = os.system('cls')
+    # İşletim Sistemi MacOS ise
+    elif os.name == 'mac':
+        _ = os.system('clear')
+    # İşletim Sistemi Linux ise
+    elif os.name == 'posix':
+        _ = os.system('clear')
+    # Yabancı bir işletim sistemi ise
+    else:
+        _ = os.system('clear')
+
 
 url = 'https://www.hepsiburada.com/xiaomi-redmi-note-10s-128-gb-6-gb-ram-xiaomi-turkiye-garantili-p-HBCV00000FO61M'
 headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 OPR/82.0.4227.50'}
+
 
 page = requests.get(url,headers=headers)
 soup = BeautifulSoup(page.content, 'html.parser')
 span = soup.find(id='offering-price')
 content = span.attrs.get('content')
 price = float(content)
-title = soup.find(id='product-name').get_text().strip()
 
-print(title)
+    
+target_mail = str(input("Gönderilecek Mail Adresini Giriniz: "))
+subject_mail = str(input("Mailin Başlığını Giriniz: "))
+      
 
 # Gmail email sunucusuna bağlanıyoruz
 def send_mail(title):
@@ -29,8 +54,8 @@ def send_mail(title):
 
         mesaj = MIMEMultipart()
         mesaj["From"] = "pricetracking11@gmail.com"          # Gönderen
-        mesaj['To'] = "serdarpeugeot@gmail.com"           # Gönderilen
-        mesaj["Subject"] = "Note 10 S Fiyat Güncellemesi"    # Konusu
+        mesaj['To'] = target_mail           # Gönderilen
+        mesaj["Subject"] = subject_mail    # Konusu
 
         body = 'Note 10 S Güncel Fiyatı '+ content +'\n\n Şu Linkten Ulaşabilirsiniz => ' + url
 
@@ -52,18 +77,22 @@ def send_mail(title):
         mail.quit()
 
 
+
 def check_price():
     page = requests.get(url,headers=headers)
     soup = BeautifulSoup(page.content, 'html.parser')
     title = soup.find(id='product-name').get_text().strip()
+    print(title)
     span = soup.find(id='offering-price')
     content = span.attrs.get('content')
     price = float(content)
-    print(price)
+    print('Güncel Fiyat: "%s"' % content)
     if price < 4000:
         send_mail(title)
 
 
 while (1):
+    clear()
     check_price()
-    time.sleep(60*1)
+    print("Son Güncelleme: %s" % time.ctime())
+    time.sleep(60*5)
