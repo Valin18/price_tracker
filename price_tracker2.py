@@ -94,4 +94,4 @@ while (1):
     clear()
     check_price()
     print("Son Güncelleme: %s" % time.ctime())
-    time.sleep(60*5)
+    time.sleep(30*1)
