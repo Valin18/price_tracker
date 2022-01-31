@@ -15,6 +15,7 @@ soup = BeautifulSoup(page.content, 'html.parser')
 span = soup.find(id='offering-price')
 content = span.attrs.get('content')
 price = float(content)
+title = soup.find(id='product-name').get_text().strip()
 
 print(title)
 
