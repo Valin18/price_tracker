@@ -16,6 +16,8 @@ span = soup.find(id='offering-price')
 content = span.attrs.get('content')
 price = float(content)
 
+print(title)
+
 # Gmail email sunucusuna bağlanıyoruz
 def send_mail(title):
     try:
@@ -53,15 +55,14 @@ def check_price():
     page = requests.get(url,headers=headers)
     soup = BeautifulSoup(page.content, 'html.parser')
     title = soup.find(id='product-name').get_text().strip()
-    print(title)
     span = soup.find(id='offering-price')
     content = span.attrs.get('content')
     price = float(content)
-    print(price)
+    print('Güncel Fiyat: ' + price)
     if price < 4000:
         send_mail(title)
 
 
 while (1):
     check_price()
-    time.sleep(60*60)
+    time.sleep(60*1)
