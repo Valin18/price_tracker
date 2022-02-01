@@ -11,19 +11,16 @@ import os
 # Terminal Penceresini Temizleyen fonksiyon
 
 def clear():
-    """
-        Bu fonksiyon terminal penceresini ilk haline getirir.
-    """
-    # İşletim Sistemi Windows ise
+    # For Windows
     if os.name == 'nt':
         _ = os.system('cls')
-    # İşletim Sistemi MacOS ise
+    # For MacOS
     elif os.name == 'mac':
         _ = os.system('clear')
-    # İşletim Sistemi Linux ise
+    # For Linux
     elif os.name == 'posix':
         _ = os.system('clear')
-    # Yabancı bir işletim sistemi ise
+    # For Any System's
     else:
         _ = os.system('clear')
 
@@ -95,3 +92,6 @@ while (1):
     check_price()
     print("Son Güncelleme: %s" % time.ctime())
     time.sleep(30*2)
+
+   
+#                                                                                                                                                                Maded By Valin
