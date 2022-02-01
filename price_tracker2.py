@@ -29,7 +29,7 @@ def clear():
 
 
 url = 'https://www.hepsiburada.com/xiaomi-redmi-note-10s-128-gb-6-gb-ram-xiaomi-turkiye-garantili-p-HBCV00000FO61M'
-headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 OPR/82.0.4227.50'}
+headers = {'User-Agent':'Mozilla/5.0 (Linux; Android 11; M2101K7BG Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/97.0.4692.98 Mobile Safari/537.36 GSA/13.2.19.23.arm64 OpaScreenful/0'}
 
 
 page = requests.get(url,headers=headers)
@@ -49,7 +49,7 @@ def send_mail(title):
         mail = smtplib.SMTP("smtp.gmail.com", 587)
         mail.ehlo()
         mail.starttls()
-        mail.login('pricetracking11@gmail.com', 'jwdlsvhkncwinqpq')
+        mail.login('pricetracking11@gmail.com', 'ayeddbodytzuhluq')
 
         mesaj = MIMEMultipart()
         mesaj["From"] = "pricetracking11@gmail.com"          # Gönderen
@@ -94,4 +94,4 @@ while (1):
     clear()
     check_price()
     print("Son Güncelleme: %s" % time.ctime())
-    time.sleep(30*1)
+    time.sleep(30*2)
