@@ -1,3 +1,4 @@
+# Kütüphaneleri Projeye Dahil Ediyorum
 import time
 import smtplib
 from traceback import print_exception
@@ -35,12 +36,12 @@ span = soup.find(id='offering-price')
 content = span.attrs.get('content')
 price = float(content)
 
-    
+# Kullanıcıdan Mail Adresi Ve Gönderilecek Mail İçin Bir Başlık Alıyorum
 target_mail = str(input("Gönderilecek Mail Adresini Giriniz: "))
 subject_mail = str(input("Mailin Başlığını Giriniz: "))
       
 
-# Gmail email sunucusuna bağlanıyoruz
+# Gmail email sunucusuna bağlanıyorum
 def send_mail(title):
     try:
         mail = smtplib.SMTP("smtp.gmail.com", 587)
@@ -73,7 +74,7 @@ def send_mail(title):
         mail.quit()
 
 
-
+# Fiyat Kontrolü Yapan Fonksiyon
 def check_price():
     page = requests.get(url,headers=headers)
     soup = BeautifulSoup(page.content, 'html.parser')
@@ -86,7 +87,7 @@ def check_price():
     if price < 4000:
         send_mail(title)
 
-
+# İşlemimi Döngüye Alarak check_price() Fonksiyonum İle Fiyat Kontrolü Yapıyorum
 while (1):
     clear()
     check_price()
