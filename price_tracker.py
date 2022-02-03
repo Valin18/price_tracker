@@ -41,7 +41,7 @@ isim = soup.find(id='product-name').get_text().strip()
     
 target_mail = str(input("Gönderilecek Mail Adresini Giriniz: "))
 subject_mail = str(input("Mailin Başlığını Giriniz: "))
-      
+asking_price = float(input('Düşmesini İstediğiniz Fiyatı Giriniz: '))
 
 # Gmail email sunucusuna bağlanıyoruz
 def send_mail(title):
@@ -86,7 +86,7 @@ def check_price():
     content = span.attrs.get('content')
     price = float(content)
     print('Güncel Fiyat: "%s"' % content)
-    if price < 17000:
+    if price < asking_price:
         send_mail(title)
 
 
