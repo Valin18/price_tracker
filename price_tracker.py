@@ -1,8 +1,6 @@
 import time
 import smtplib
 from traceback import print_exception
-from turtle import title
-from unicodedata import name
 import requests
 from bs4 import BeautifulSoup
 from email.mime.multipart import MIMEMultipart
