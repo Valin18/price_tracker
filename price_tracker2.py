@@ -39,7 +39,7 @@ price = float(content)
 # Kullanıcıdan Mail Adresi Ve Gönderilecek Mail İçin Bir Başlık Alıyorum
 target_mail = str(input("Gönderilecek Mail Adresini Giriniz: "))
 subject_mail = str(input("Mailin Başlığını Giriniz: "))
-      
+asking_price = float(input('Istenilen Fiyat: '))
 
 # Gmail email sunucusuna bağlanıyorum
 def send_mail(title):
@@ -84,7 +84,7 @@ def check_price():
     content = span.attrs.get('content')
     price = float(content)
     print('Güncel Fiyat: "%s"' % content)
-    if price < 4000:
+    if price < asking_price:
         send_mail(title)
 
 # İşlemimi Döngüye Alarak check_price() Fonksiyonum İle Fiyat Kontrolü Yapıyorum
